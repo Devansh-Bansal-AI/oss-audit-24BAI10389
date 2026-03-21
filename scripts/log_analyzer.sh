@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # Script 4: Log File Analyzer
-# Author: Devan
+# Author: Devansh Bansal
 # Course: Open Source Software (OSS) - VIT
 # Description: Analyzes system log files and categorizes
 #              messages by severity (errors, warnings, info)

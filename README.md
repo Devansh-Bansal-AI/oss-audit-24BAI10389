@@ -191,9 +191,10 @@ Through this project, I learned:
 
 ## Author
 
-**Devan**
-B.Tech CSE (AI & ML)
-VIT University
+**Devansh Bansal**
+Registration Number: 24BAI10389
+B.Tech CSE (AI & ML) - 2nd Year
+VIT Bhopal University
 
 ## License
 

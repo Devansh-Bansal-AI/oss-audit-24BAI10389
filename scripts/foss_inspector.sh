@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # Script 2: FOSS Package Inspector
-# Author: Devan
+# Author: Devansh Bansal
 # Course: Open Source Software (OSS) - VIT
 # Description: Inspects installed packages on the system and
 #              checks for FOSS software including Firefox

@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # Script 5: Open Source Manifesto Generator
-# Author: Devan
+# Author: Devansh Bansal
 # Course: Open Source Software (OSS) - VIT
 # Description: An interactive script that generates a
 #              personalized Open Source Manifesto based on

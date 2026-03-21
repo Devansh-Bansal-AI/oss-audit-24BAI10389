@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # Script 3: Disk and Permission Auditor
-# Author: Devan
+# Author: Devansh Bansal
 # Course: Open Source Software (OSS) - VIT
 # Description: Audits disk usage and checks for files with
 #              potentially risky permissions (world-writable,

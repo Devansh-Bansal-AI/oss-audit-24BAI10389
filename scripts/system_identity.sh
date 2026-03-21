@@ -1,7 +1,7 @@
 #!/bin/bash
 # ============================================================
 # Script 1: System Identity Report
-# Author: Devan
+# Author: Devansh Bansal
 # Course: Open Source Software (OSS) - VIT
 # Description: Gathers and displays system information
 #              This helps understand the Linux environment where
