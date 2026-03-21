@@ -118,6 +118,7 @@ chmod +x scripts/*.sh
 ```
 firefox-oss-audit/
 ├── README.md
+├── .gitignore
 ├── scripts/
 │   ├── system_identity.sh
 │   ├── foss_inspector.sh
@@ -125,8 +126,21 @@ firefox-oss-audit/
 │   ├── log_analyzer.sh
 │   └── manifesto_generator.sh
 └── docs/
-    └── project_report.pdf (if applicable)
+    ├── research_notes.md          # Research material for report
+    ├── REPORT_TEMPLATE.md         # Report writing template
+    ├── output_script1_*.txt       # Sample outputs
+    ├── output_script2_*.txt
+    ├── output_script3_*.txt
+    ├── output_script4_*.txt
+    └── output_script5_*.txt
 ```
+
+## Documentation
+
+The `docs/` folder contains:
+- **research_notes.md** - Comprehensive research on Firefox history, MPL license, and Mozilla Foundation
+- **REPORT_TEMPLATE.md** - Template with all required sections for the project report
+- **output_script*.txt** - Sample outputs from running scripts on Ubuntu 24.04 LTS
 
 ## Sample Output
 
