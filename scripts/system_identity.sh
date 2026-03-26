@@ -134,6 +134,17 @@ if command -v free &> /dev/null; then
     }'
 fi
 
+# Operating System License Information
+print_header "OPERATING SYSTEM LICENSE"
+
+echo -e "${CYAN}Open Source License Information:${NC}"
+echo ""
+echo -e "${YELLOW}The Linux kernel is licensed under the:${NC}"
+echo -e "${GREEN}GNU General Public License v2 (GPLv2)${NC}"
+echo ""
+echo "The GPLv2 ensures that the Linux kernel source code remains free"
+echo "and open for anyone to use, modify, and distribute."
+
 # Footer
 echo ""
 echo -e "${BLUE}----------------------------------------------${NC}"

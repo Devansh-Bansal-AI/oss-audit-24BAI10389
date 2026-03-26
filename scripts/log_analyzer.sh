@@ -44,7 +44,7 @@ find_log_file() {
     fi
 }
 
-# Function to analyze a log file
+# Function to analyze a log file using while-read loop
 analyze_log() {
     local LOG_FILE=$1
     local LOG_NAME=$(basename "$LOG_FILE")
@@ -58,16 +58,37 @@ analyze_log() {
         return 1
     fi
 
-    # Count different severity levels
-    # Using case-insensitive grep
-    local ERRORS=$(grep -ci "error" "$LOG_FILE" 2>/dev/null)
-    local WARNINGS=$(grep -ci "warning\|warn" "$LOG_FILE" 2>/dev/null)
-    local INFO=$(grep -ci "info" "$LOG_FILE" 2>/dev/null)
-    local CRITICAL=$(grep -ci "critical\|crit\|fatal\|panic" "$LOG_FILE" 2>/dev/null)
-    local FAILED=$(grep -ci "failed\|failure" "$LOG_FILE" 2>/dev/null)
+    # Initialize counters
+    local ERRORS=0
+    local WARNINGS=0
+    local INFO=0
+    local CRITICAL=0
+    local FAILED=0
+    local TOTAL_LINES=0
 
-    # Get total lines
-    local TOTAL_LINES=$(wc -l < "$LOG_FILE" 2>/dev/null)
+    # Count different severity levels using while-read loop
+    while IFS= read -r line; do
+        ((TOTAL_LINES++))
+
+        # Case statement to categorize log entries
+        case "${line,,}" in
+            *error*)
+                ((ERRORS++))
+                ;;
+            *critical*|*crit*|*fatal*|*panic*)
+                ((CRITICAL++))
+                ;;
+            *warning*|*warn*)
+                ((WARNINGS++))
+                ;;
+            *info*)
+                ((INFO++))
+                ;;
+            *failed*|*failure*)
+                ((FAILED++))
+                ;;
+        esac
+    done < "$LOG_FILE"
 
     # Display statistics
     echo -e "${MAGENTA}--- Statistics for $LOG_NAME ---${NC}"
@@ -229,17 +250,28 @@ echo "warnings, and security-related events."
 echo ""
 echo -e "${YELLOW}Note: Some logs require root/sudo access${NC}"
 
+# Check if log file was provided as command-line argument
+if [ -z "$1" ]; then
+    echo ""
+    echo -e "${RED}Error: Log file not provided${NC}"
+    echo "Usage: $0 <log_file>"
+    echo ""
+    echo "Example: $0 /var/log/syslog"
+    echo "         $0 /var/log/messages"
+    exit 1
+fi
+
+MAIN_LOG="$1"
+
 # Find and analyze main system log
 print_header "System Log Analysis"
-
-MAIN_LOG=$(find_log_file)
 
 if [ -n "$MAIN_LOG" ]; then
     analyze_log "$MAIN_LOG"
     show_recent_errors "$MAIN_LOG"
     show_recent_warnings "$MAIN_LOG"
 else
-    echo "No standard syslog found. Checking journalctl..."
+    echo "Log file not found: $MAIN_LOG"
 fi
 
 # Check journalctl

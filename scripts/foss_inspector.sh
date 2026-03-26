@@ -33,6 +33,61 @@ print_status() {
     fi
 }
 
+# Function to describe a package using case statement
+describe_package() {
+    local pkg=$1
+    case "$pkg" in
+        vim)
+            echo "Vim: Highly configurable text editor for efficient code editing"
+            ;;
+        git)
+            echo "Git: Distributed version control system for tracking code changes"
+            ;;
+        python3)
+            echo "Python3: Versatile programming language for diverse applications"
+            ;;
+        gcc)
+            echo "GCC: GNU Compiler Collection for compiling C/C++ programs"
+            ;;
+        make)
+            echo "Make: Build automation tool for managing project compilation"
+            ;;
+        curl)
+            echo "curl: Command-line tool for transferring data with URLs"
+            ;;
+        wget)
+            echo "wget: Tool for downloading files from the web"
+            ;;
+        nano)
+            echo "nano: Simple text editor for quick file editing"
+            ;;
+        openssh)
+            echo "OpenSSH: Secure Shell for remote system access and management"
+            ;;
+        apache2)
+            echo "Apache2: Web server serving web content over HTTP/HTTPS"
+            ;;
+        nginx)
+            echo "Nginx: High-performance web server and reverse proxy"
+            ;;
+        mysql)
+            echo "MySQL: Relational database management system"
+            ;;
+        postgresql)
+            echo "PostgreSQL: Advanced relational database with SQL capabilities"
+            ;;
+        nodejs)
+            echo "Node.js: JavaScript runtime for server-side development"
+            ;;
+        firefox)
+            echo "Firefox: A nonprofit fighting for an open web"
+            ;;
+        *)
+            echo "$pkg: FOSS software package"
+            ;;
+    esac
+}
+
 # Main script
 clear
 echo ""
@@ -153,6 +208,7 @@ for pkg in "${FOSS_PACKAGES[@]}"; do
     if command -v $pkg &> /dev/null; then
         VERSION=$($pkg --version 2>/dev/null | head -1 | cut -d' ' -f1-3)
         print_status "$pkg - Installed" "found"
+        echo "  └─ $(describe_package "$pkg")"
         ((FOSS_COUNT++))
     fi
 done
